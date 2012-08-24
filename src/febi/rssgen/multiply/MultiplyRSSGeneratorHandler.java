@@ -28,7 +28,6 @@ import febi.rssgen.com.multiply.gui.TaskViewer;
 import febi.rssgen.com.multiply.rss.MultiplyPageProcessor;
 import febi.rssgen.com.rss.PageProcessor;
 import febi.rssgen.com.rss.RSSGenerator;
-import febi.rssgen.com.rss.RSSItem;
 import febi.rssgen.com.rss.RSSTerm;
 import java.io.BufferedWriter;
 import java.io.File;
