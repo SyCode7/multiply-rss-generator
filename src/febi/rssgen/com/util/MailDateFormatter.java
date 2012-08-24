@@ -111,7 +111,10 @@ public class MailDateFormatter {
                 dayOfMonth + " " +                                      // 7
                 monthInYear + " " +                                     // Nov
                 year + " " +                                            // 2006
-                hourOfDay + ":" + minutes + ":" + seconds + " " +       // 14:13:26
+                (hourOfDay<10?"0"+hourOfDay:hourOfDay) 
+                + ":" + (minutes<10?"0"+minutes:minutes) 
+                + ":" + (seconds<10?"0"+seconds:seconds)
+                + " " +       // 14:13:26
                 deviceOffset;                                           //+0200  
         return rfc;
     }

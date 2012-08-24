@@ -22,12 +22,23 @@
 
 package febi.rssgen.com.rss;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  *
  * @author itrc169
  */
 public class Global {
-    public static final String VERSION = "0.1.2";
+    public static final String VERSION = "0.1.3";
     
-    public static final String UPDATE = "bugs fixing..\nUpdate on Locale";
+    public static final String UPDATE = "- bugs fixing..\n- Update on Locale"
+            + "\nDate format simplified.";
+    
+    public static final SimpleDateFormat formatter =
+            new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+    
+    public static String formatDate(Date d){
+        return formatter.format(d);        
+    }
 }

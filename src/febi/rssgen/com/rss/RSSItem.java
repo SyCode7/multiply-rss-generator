@@ -127,7 +127,7 @@ public class RSSItem extends RSSTerm {
             res.append(MailDateFormatter.dateToRfc2822(this.date));
             res.append("</pubDate>\n");
             res.append("\t\t\t<wp:post_date>");
-            res.append(MailDateFormatter.dateToRfc2822(this.date));
+            res.append(Global.formatDate(this.date));
             res.append("</wp:post_date>\n");
         }
 

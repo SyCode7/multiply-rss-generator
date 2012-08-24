@@ -5,7 +5,7 @@
 package runner;
 
 import com.clutch.dates.StringToTime;
-import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 /**
@@ -17,11 +17,18 @@ public class DateTest {
     public static void main(String args[]) {
 
         System.out.println(Locale.getDefault());
-        Locale.setDefault(Locale.KOREA);
-        System.out.println(Locale.getDefault());
         
-        String a = "01 17 08 5:41 PM";
-        Date pubDate = new StringToTime(a);
+        SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+        
+        
+        String a = "Jan 12 12 4:08 PM";
+        StringToTime pubDate = new StringToTime(a);
         System.out.println(pubDate);
+        System.out.println(formatter.format(pubDate));
+        
+        a = "2013-01-12 16:08:00";
+        pubDate = new StringToTime(a);
+        System.out.println(pubDate);
+        System.out.println(formatter.format(pubDate));
     }
 }

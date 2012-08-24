@@ -22,7 +22,6 @@
 
 package febi.rssgen.com.rss;
 
-import febi.rssgen.com.util.MailDateFormatter;
 import java.util.Date;
 
 public class RSSItemComment extends RSSItem{
@@ -73,7 +72,7 @@ public class RSSItemComment extends RSSItem{
         res.append(this.getAuthor());
         res.append("@multiply.com</wp:comment_author_email>");
         res.append("<wp:comment_date>");
-        res.append(MailDateFormatter.dateToRfc2822(this.getDate()));
+        res.append(Global.formatDate(this.getDate()));
         res.append("</wp:comment_date>");
         res.append("<wp:comment_content><![CDATA[");
 
