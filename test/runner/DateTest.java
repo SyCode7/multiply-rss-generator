@@ -18,7 +18,7 @@ public class DateTest {
 
         System.out.println(Locale.getDefault());
         
-        SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         
         
         String a = "Jan 12 12 4:08 PM";

@@ -36,7 +36,7 @@ public class Global {
             + "\nDate format simplified.";
     
     public static final SimpleDateFormat formatter =
-            new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+            new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     
     public static String formatDate(Date d){
         return formatter.format(d);        
