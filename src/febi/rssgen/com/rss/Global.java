@@ -30,7 +30,7 @@ import java.util.Date;
  * @author itrc169
  */
 public class Global {
-    public static final String VERSION = "0.1.3";
+    public static final String VERSION = "0.1.4";
     
     public static final String UPDATE = "- bugs fixing..\n- Update on Locale"
             + "\nDate format simplified.";
