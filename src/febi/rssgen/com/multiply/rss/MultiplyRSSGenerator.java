@@ -23,6 +23,7 @@
 package febi.rssgen.com.multiply.rss;
 
 import com.clutch.dates.StringToTime;
+import febi.rssgen.com.rss.Global;
 import febi.rssgen.com.rss.RSSGenerator;
 import febi.rssgen.com.rss.RSSItem;
 import febi.rssgen.com.rss.RSSItemComment;
@@ -166,7 +167,8 @@ public class MultiplyRSSGenerator extends RSSGenerator {
             dateStr = matcher.group(this.dateIndex)
                     .replaceAll(",|'| an |at|on", "");
             
-            pubDate = new StringToTime(dateStr);
+//            pubDate = new StringToTime(dateStr);
+            pubDate = Global.getPostDate(dateStr);
 
             if (!this.folder.equals("notes")) {
 
@@ -203,10 +205,10 @@ public class MultiplyRSSGenerator extends RSSGenerator {
                 dateStr = commentMatcher.group(this.dateCommentIndex)
                         .replaceAll(",|'| an |at|on", "");
 
-
+//                dateComment =
+//                        new Date((new StringToTime(dateStr)).getTime() + (index * 1000));
                 dateComment =
-                        new Date((new StringToTime(dateStr)).getTime() + (index * 1000));
-
+                        new Date((Global.getCommentPostDate(dateStr)).getTime() + (index * 1000));
 
                 contentComment = commentMatcher.group(this.contentCommentIndex)
                         .replaceAll("&nbsp;", " ");
