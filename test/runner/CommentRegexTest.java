@@ -71,8 +71,8 @@ public class CommentRegexTest {
             //process the date
             String dateStr = m.group(dateCommentIndex)
                     .replaceAll(",|'| an |at|on", "");
-            Date pubDate = Global.getCommentPostDate(dateStr);
-            System.out.println(pubDate);
+            Date pubDate = Global.getCommentPostDate(dateStr.trim());
+            System.out.println(dateStr + " : " + pubDate);
 
             if (m.group(quoteAllIndex) != null) {
                 Matcher m2 = pattern.matcher(m.group(quoteAllIndex));

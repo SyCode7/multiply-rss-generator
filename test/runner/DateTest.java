@@ -47,8 +47,8 @@ public class DateTest {
         System.out.println(pubDate);
         System.out.println(formatter.format(pubDate));
         
-        a = "2013-01-12 16:08:00";
-        
-        System.out.println(Global.getCommentPostDate("Jan 28"));
+        a = "on Jan 31";
+        a = a.replaceAll(",|'| an |at|on", "");
+        System.out.println(Global.getCommentPostDate("Feb 1"));
     }
 }

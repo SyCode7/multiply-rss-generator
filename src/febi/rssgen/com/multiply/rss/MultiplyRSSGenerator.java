@@ -164,7 +164,7 @@ public class MultiplyRSSGenerator extends RSSGenerator {
 
             //process the date
             dateStr = matcher.group(this.dateIndex)
-                    .replaceAll(",|'| an |at|on", "");
+                    .replaceAll(",|'| an |at|on", "").trim();
             
 //            pubDate = new StringToTime(dateStr);
             pubDate = Global.getPostDate(dateStr);
@@ -202,7 +202,7 @@ public class MultiplyRSSGenerator extends RSSGenerator {
 
                 //process the date
                 dateStr = commentMatcher.group(this.dateCommentIndex)
-                        .replaceAll(",|'| an |at|on", "");
+                        .replaceAll(",|'| an |at|on", "").trim();
 
 //                dateComment =
 //                        new Date((new StringToTime(dateStr)).getTime() + (index * 1000));
