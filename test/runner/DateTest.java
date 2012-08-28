@@ -4,7 +4,6 @@
  */
 package runner;
 
-import com.clutch.dates.StringToTime;
 import febi.rssgen.com.rss.Global;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -49,9 +48,6 @@ public class DateTest {
         System.out.println(formatter.format(pubDate));
         
         a = "2013-01-12 16:08:00";
-        pubDate = new StringToTime(a);
-        System.out.println(pubDate);
-        System.out.println(formatter.format(pubDate));
         
         System.out.println(Global.getCommentPostDate("Jan 28"));
     }

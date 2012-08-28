@@ -4,9 +4,10 @@
  */
 package runner;
 
-import com.clutch.dates.StringToTime;
+import febi.rssgen.com.rss.Global;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -70,7 +71,7 @@ public class PostRegexTest {
             //process the date
             String dateStr = m.group(dateIndex)
                     .replaceAll(",|'| an |at|on", "");
-            StringToTime pubDate = new StringToTime(dateStr);
+            Date pubDate = Global.getPostDate(dateStr);
 
             System.out.println(m.group(contentIndex).replaceAll("(<div.*>.*</div>|</div>)", ""));
 

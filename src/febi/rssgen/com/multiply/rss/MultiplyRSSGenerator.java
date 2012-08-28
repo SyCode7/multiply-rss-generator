@@ -22,7 +22,6 @@
 
 package febi.rssgen.com.multiply.rss;
 
-import com.clutch.dates.StringToTime;
 import febi.rssgen.com.rss.Global;
 import febi.rssgen.com.rss.RSSGenerator;
 import febi.rssgen.com.rss.RSSItem;
