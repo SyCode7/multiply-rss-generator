@@ -19,7 +19,6 @@
  * @link http://code.google.com/p/multiply-rss-generator/
  * @year 2012
  */
-
 package febi.rssgen.com.multiply.rss;
 
 import febi.rssgen.com.rss.Global;
@@ -92,8 +91,9 @@ public class MultiplyRSSGenerator extends RSSGenerator {
         } else if (folder.equals("notes")) {
             this.setItemSearchPattern(
                     "<div id=\"item_(.+?):" + "notes" + ":(.*?)\".*?>.*?(?:</div>|)"
-                    + "(?:.*?<a rel='bookmark'.*?itemprop='url'><span itemprop='name'>|)(.*?)"
-                    + "(</span></a>|</div>).*?(<nobr>|</a> on )(.*?)(</nobr>| for)(?:.+?"
+                    + "(?:.*?<a rel='bookmark'.*?itemprop='url'><span itemprop='name'>|)"
+                    + "(?:.*?<td class=cattitle>)(.*?)(</span></a>|</div>|</td>"
+                    + "<td class=itemsubsub>).*?(<nobr>|</a> on )(.*?)(</nobr>| for)(?:.+?"
                     + "<div id=\"item_body\".+?>(.*?)</div>(</div></div></div>)"
                     + "?(<br clear=right>|<div class=)|)");
 
@@ -165,7 +165,7 @@ public class MultiplyRSSGenerator extends RSSGenerator {
             //process the date
             dateStr = matcher.group(this.dateIndex)
                     .replaceAll(",|'| an |at|on", "").trim();
-            
+
 //            pubDate = new StringToTime(dateStr);
             pubDate = Global.getPostDate(dateStr);
 

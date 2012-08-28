@@ -25,7 +25,7 @@ public class PostRegexTest {
     private static int contentIndex = 3;
 
     public static void main(String args[]) throws IOException {
-        String fileContents = readEntireFile("/home/itrc169/public_html/test.3.htm");
+        String fileContents = readEntireFile("/home/itrc169/public_html/test.4.htm");
         //new line cleansing
         fileContents = fileContents.replaceAll("(?:\\r|)\\n", " ");
 
@@ -46,11 +46,11 @@ public class PostRegexTest {
 //                        + "<div id=\"item_body\"(.+?)>(.*?)(?:</div>|)(?:<br clear=right>"
 //                        + "<img .*?>|)<div style='clear:both'><!-- --></div>";
         patternString = "<div id=\"item_(.+?):" + "notes" + ":(.*?)\".*?>.*?(?:</div>|)"
-                + "(?:.*?<a rel='bookmark'.*?itemprop='url'><span itemprop='name'>|)(.*?)"
-                + "(</span></a>|</div>).*?(<nobr>|</a> on )(.*?)(</nobr>| for)(?:.+?"
-                + "<div id=\"item_body\".+?>(.*?)</div>(</div></div></div>)"
-                + "?(<br clear=right>|<div class=)|)";
-
+                    + "(?:.*?<a rel='bookmark'.*?itemprop='url'><span itemprop='name'>|)"
+                    + "(?:.*?<td class=cattitle>)(.*?)(</span></a>|</div>|</td>"
+                    + "<td class=itemsubsub>).*?(<nobr>|</a> on )(.*?)(</nobr>| for)(?:.+?"
+                    + "<div id=\"item_body\".+?>(.*?)</div>(</div></div></div>)"
+                    + "?(<br clear=right>|<div class=)|)";
         String text = "<a href=\"ad1\">sdqs</a><a href=\"ad2\">sds</a><a href=ad3>qs</a>";
 
 
