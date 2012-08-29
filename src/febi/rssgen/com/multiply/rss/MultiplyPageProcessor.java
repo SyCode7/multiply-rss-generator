@@ -164,7 +164,8 @@ public class MultiplyPageProcessor extends PageProcessor {
             m = pattern.matcher(cleanedStr);
 
             while (m.find()) {
-                url = folder+URL_INFIX+m.group(POST_ID);
+                //post id here is actually an actual link :P
+                url = m.group(POST_ID);
 
                 if (!url.startsWith(HTTP_STRING)) {
                     url = this.getUrl() + "/" + url;
