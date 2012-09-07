@@ -99,8 +99,8 @@ public class MultiplyPageProcessor extends PageProcessor {
 
             rawString = getPageData(url_paged);
 
-            Logger.dumpToFile("/home/itrc169/public_html/page_" + folder + "_"+
-                    startPost+".htm", rawString);
+//            Logger.dumpToFile("/home/itrc169/public_html/page_" + folder + "_"+
+//                    startPost+".htm", rawString);
 
             pageList = parsePageUrl(rawString);
 
