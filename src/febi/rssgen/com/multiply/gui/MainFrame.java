@@ -19,7 +19,6 @@
  * @link http://code.google.com/p/multiply-rss-generator/
  * @year 2012
  */
-
 package febi.rssgen.com.multiply.gui;
 
 import febi.com.util.TextAreaOutputStream;
@@ -32,6 +31,7 @@ import java.util.prefs.Preferences;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.text.DefaultCaret;
 
 /*
  * To change this template, choose Tools | Templates
@@ -383,15 +383,18 @@ public class MainFrame extends javax.swing.JFrame implements TaskViewer {
         //capturing process output
         System.setOut(new PrintStream(new TextAreaOutputStream(txt_output)));
         System.setErr(new PrintStream(new TextAreaOutputStream(txt_output)));
-        
+
         //check all
         chk_journal.setSelected(true);
         chk_notes.setSelected(true);
         chk_recipes.setSelected(true);
         chk_reviews.setSelected(true);
-        
+
         //set version label
-        lbl_version.setText("Version: "+Global.VERSION);
+        lbl_version.setText("Version: " + Global.VERSION);
+
+        DefaultCaret caret = (DefaultCaret) txt_output.getCaret();
+        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 
     }
 
