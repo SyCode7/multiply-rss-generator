@@ -19,18 +19,15 @@
  * @link http://code.google.com/p/multiply-rss-generator/
  * @year 2012
  */
-
 package febi.rssgen.com.rss;
 
-import febi.com.log.Logger;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
-import org.apache.http.HttpVersion;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.CoreProtocolPNames;
-import org.apache.http.util.EntityUtils;
 
 /**
  *
@@ -40,16 +37,10 @@ public abstract class PageProcessor {
 
     private RSSGenerator rssGen;
     //execute command
-    private static HttpClient client;
     public static final String HTTP_STRING = "http://";
     private String url;
 
     public PageProcessor(String url) {
-
-        //prepare http client
-        client = new DefaultHttpClient();
-        client.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION,
-                HttpVersion.HTTP_1_1);
 
         //construct url
 
@@ -71,23 +62,27 @@ public abstract class PageProcessor {
         this.rssGen = rssGen;
     }
 
-    public static String getPageData(String url) {
-        //getter
-        HttpGet get = new HttpGet(url);
-
-        // Here we go!
-        String result = null;
+    public static String getPageData(String urlStr) {
+        StringBuilder result = new StringBuilder();
+        String response;
+        URL url;
         try {
-            result = EntityUtils.toString(client.execute(get).getEntity(), "UTF-8");
+
+            //source: http://www.vogella.com/articles/JavaNetworking/article.html#javanetwork_example_readpage
+            url = new URL(urlStr);
+//            System.out.println("Opening: "+urlStr);
+            BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+
+            while ((response = in.readLine()) != null) {
+                result.append(response).append("\n");
+            }
+        } catch (MalformedURLException ex) {
+            System.err.println("Error on: " + ex.getMessage());
         } catch (IOException ex) {
-            Logger.outputMessage("\nError on fecth data");
+            System.err.println("Error on: " + ex.getMessage());
         }
 
-        if (result == null) {
-            Logger.outputMessage("\nData fetch from : " + url + " is null\n");
-            return null;
-        }
-        return result;
+        return result.toString();
     }
 
     public String getUrl() {

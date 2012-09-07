@@ -98,9 +98,9 @@ public class MultiplyPageProcessor extends PageProcessor {
             Logger.outputMessageLn("-->Fecthing: " + url_paged);
 
             rawString = getPageData(url_paged);
-//
-//            Logger.dumpToFile("/home/itrc169/public_html/page_" + folder + "_"+
-//                    startPost+".htm", rawString);
+
+            Logger.dumpToFile("/home/itrc169/public_html/page_" + folder + "_"+
+                    startPost+".htm", rawString);
 
             pageList = parsePageUrl(rawString);
 

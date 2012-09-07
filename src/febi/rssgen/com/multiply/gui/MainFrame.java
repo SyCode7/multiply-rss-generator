@@ -23,6 +23,7 @@
 package febi.rssgen.com.multiply.gui;
 
 import febi.com.util.TextAreaOutputStream;
+import febi.rssgen.com.rss.Global;
 import febi.rssgen.multiply.MultiplyRSSGeneratorHandler;
 import java.io.File;
 import java.io.PrintStream;
@@ -82,6 +83,7 @@ public class MainFrame extends javax.swing.JFrame implements TaskViewer {
         txt_output = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         txt_notification = new javax.swing.JTextArea();
+        lbl_version = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -89,6 +91,7 @@ public class MainFrame extends javax.swing.JFrame implements TaskViewer {
         jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setText("Multiply Username / Address");
 
@@ -133,6 +136,8 @@ public class MainFrame extends javax.swing.JFrame implements TaskViewer {
         txt_notification.setColumns(20);
         txt_notification.setRows(5);
         jScrollPane2.setViewportView(txt_notification);
+
+        lbl_version.setText("Version: 0.0");
 
         jMenu1.setText("RSSGen");
 
@@ -188,14 +193,18 @@ public class MainFrame extends javax.swing.JFrame implements TaskViewer {
                         .addComponent(txt_outputFolder)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1))
-                    .addComponent(txt_user)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel2)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel1)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(jLabel3))
-                        .addComponent(jLabel5)))
+                        .addComponent(jLabel5))
+                    .addComponent(txt_user)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbl_version)
+                        .addGap(18, 18, 18)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -212,7 +221,9 @@ public class MainFrame extends javax.swing.JFrame implements TaskViewer {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txt_user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(lbl_version))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(chk_journal)
@@ -353,6 +364,7 @@ public class MainFrame extends javax.swing.JFrame implements TaskViewer {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lbl_version;
     private javax.swing.JTextArea txt_notification;
     private javax.swing.JTextArea txt_output;
     private javax.swing.JTextField txt_outputFolder;
@@ -371,6 +383,15 @@ public class MainFrame extends javax.swing.JFrame implements TaskViewer {
         //capturing process output
         System.setOut(new PrintStream(new TextAreaOutputStream(txt_output)));
         System.setErr(new PrintStream(new TextAreaOutputStream(txt_output)));
+        
+        //check all
+        chk_journal.setSelected(true);
+        chk_notes.setSelected(true);
+        chk_recipes.setSelected(true);
+        chk_reviews.setSelected(true);
+        
+        //set version label
+        lbl_version.setText("Version: "+Global.VERSION);
 
     }
 

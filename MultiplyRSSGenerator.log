@@ -1,0 +1,316 @@
+Sat Sep 08 00:43:22 KST 2012 : Starting..
+=====
+Sat Sep 08 00:49:56 KST 2012 : Starting..
+=====
+Sat Sep 08 00:51:36 KST 2012 : Starting..
+=====
+Sat Sep 08 00:53:10 KST 2012 : Starting..
+=====
+Sat Sep 08 00:53:54 KST 2012 : Starting..
+=====
+Sat Sep 08 00:54:41 KST 2012 : Starting..
+=====
+Sat Sep 08 00:56:18 KST 2012 : Starting..
+=====
+Sat Sep 08 00:59:29 KST 2012 : Starting..
+=====
+Sat Sep 08 01:00:39 KST 2012 : Starting..
+=====
+Sat Sep 08 01:01:38 KST 2012 : Starting..
+=====
+Sat Sep 08 01:07:13 KST 2012 : Starting..
+=====
+Sat Sep 08 01:10:20 KST 2012 : Starting..
+=====
+Program started.Start Processing on: 2012_09_08_01-10-24_
+	user:	rengganiez
+	Journal:	Yes
+	Reviews:	No
+	Recipes:	No
+	Notes:	No
+	outputFolder:	/home/itrc169/public_html/rengganiez
+
+
+--> 'Journal' is selected. Processing..
+=--> Obtaining page list..
+-->Fecthing: http://rengganiez.multiply.com/journal/?&page_start=0
+----> 20 page(s) processed..
+-->Fecthing: http://rengganiez.multiply.com/journal/?&page_start=20
+----> 20 page(s) processed..
+-->Fecthing: http://rengganiez.multiply.com/journal/?&page_start=40
+----> 20 page(s) processed..
+-->Fecthing: http://rengganiez.multiply.com/journal/?&page_start=60
+----> 20 page(s) processed..
+-->Fecthing: http://rengganiez.multiply.com/journal/?&page_start=80
+----> 20 page(s) processed..
+-->Fecthing: http://rengganiez.multiply.com/journal/?&page_start=100
+----> 20 page(s) processed..
+-->Fecthing: http://rengganiez.multiply.com/journal/?&page_start=120
+----> 20 page(s) processed..
+-->Fecthing: http://rengganiez.multiply.com/journal/?&page_start=140
+----> 20 page(s) processed..
+-->Fecthing: http://rengganiez.multiply.com/journal/?&page_start=160
+----> 20 page(s) processed..
+-->Fecthing: http://rengganiez.multiply.com/journal/?&page_start=180
+----> 20 page(s) processed..
+-->Fecthing: http://rengganiez.multiply.com/journal/?&page_start=200
+----> 20 page(s) processed..
+-->Fecthing: http://rengganiez.multiply.com/journal/?&page_start=220
+----> 20 page(s) processed..
+-->Fecthing: http://rengganiez.multiply.com/journal/?&page_start=240
+----> 20 page(s) processed..
+-->Fecthing: http://rengganiez.multiply.com/journal/?&page_start=260
+----> 20 page(s) processed..
+-->Fecthing: http://rengganiez.multiply.com/journal/?&page_start=280
+----> 20 page(s) processed..
+-->Fecthing: http://rengganiez.multiply.com/journal/?&page_start=300
+----> 20 page(s) processed..
+-->Fecthing: http://rengganiez.multiply.com/journal/?&page_start=320
+----> 20 page(s) processed..
+-->Fecthing: http://rengganiez.multiply.com/journal/?&page_start=340
+----> 20 page(s) processed..
+-->Fecthing: http://rengganiez.multiply.com/journal/?&page_start=360
+----> 20 page(s) processed..
+-->Fecthing: http://rengganiez.multiply.com/journal/?&page_start=380
+----> 20 page(s) processed..
+== Sat Sep 08 01:10:20 KST 2012 ==-->Fecthing: http://rengganiez.multiply.com/journal/?&page_start=400
+== Sat Sep 08 01:10:20 KST 2012 ==----> 20 page(s) processed..
+== Sat Sep 08 01:10:20 KST 2012 ==-->Fecthing: http://rengganiez.multiply.com/journal/?&page_start=420
+== Sat Sep 08 01:10:20 KST 2012 ==----> 20 page(s) processed..
+== Sat Sep 08 01:10:20 KST 2012 ==-->Fecthing: http://rengganiez.multiply.com/journal/?&page_start=440
+== Sat Sep 08 01:10:20 KST 2012 ==----> 20 page(s) processed..
+== Sat Sep 08 01:10:20 KST 2012 ==-->Fecthing: http://rengganiez.multiply.com/journal/?&page_start=460
+== Sat Sep 08 01:10:20 KST 2012 ==----> 20 page(s) processed..
+== Sat Sep 08 01:10:20 KST 2012 ==-->Fecthing: http://rengganiez.multiply.com/journal/?&page_start=480
+== Sat Sep 08 01:10:20 KST 2012 ==----> 20 page(s) processed..
+== Sat Sep 08 01:10:20 KST 2012 ==-->Fecthing: http://rengganiez.multiply.com/journal/?&page_start=500
+== Sat Sep 08 01:10:20 KST 2012 ==----> 20 page(s) processed..
+== Sat Sep 08 01:10:20 KST 2012 ==-->Fecthing: http://rengganiez.multiply.com/journal/?&page_start=520
+== Sat Sep 08 01:10:20 KST 2012 ==----> 4 page(s) processed..
+== Sat Sep 08 01:10:20 KST 2012 ==-->Fecthing: http://rengganiez.multiply.com/journal/?&page_start=540
+== Sat Sep 08 01:10:20 KST 2012 ==----> 0 page(s) processed..
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/661
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 1 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/660
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 2 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/659
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 3 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/658
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 4 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/650
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 5 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/649
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 6 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/648
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 7 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/647
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 8 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/645
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 9 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/644
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 10 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/641
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 11 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/640
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 12 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/639
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 13 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/638
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 14 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/637
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 15 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/634
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 16 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/633
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 17 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/631
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 18 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/630
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 19 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/629
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 20 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/628
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 21 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/627
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 22 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/625
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 23 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/624
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 24 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/623
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 25 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/621
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 26 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/619
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 27 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/600
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 28 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/596
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 29 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/589
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 30 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/587
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 31 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/585
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 32 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/583
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 33 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/582
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 34 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/578
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 35 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/576
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 36 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/574
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 37 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/573
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 38 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/572
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 39 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/571
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 40 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/570
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 41 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/569
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 42 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/568
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 43 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/563
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 44 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/562
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 45 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/561
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 46 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/560
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 47 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/558
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 48 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/557
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 49 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/556
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 50 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/555
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 51 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/554
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 52 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/552
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 53 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/550
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 54 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/549
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 55 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/548
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 56 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/546
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 57 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/545
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 58 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/543
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 59 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/542
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 60 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/540
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 61 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/539
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 62 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/537
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 63 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/535
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 64 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/534
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 65 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/533
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 66 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/532
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 67 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/530
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 68 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/529
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 69 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/528
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 70 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/527
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 71 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/526
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 72 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/525
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 73 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/524
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 74 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/521
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 75 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Sat Sep 08 01:15:00 KST 2012 : Starting..
+=====
+Fetching post: http://rengganiez.multiply.com/journal/item/520
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 76 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/518
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 77 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/517
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 78 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/516
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 79 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/515
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 80 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/509
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 81 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/508
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 82 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/507
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 83 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/506
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 84 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/505
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 85 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/503
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 86 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/502
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 87 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/501
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 88 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/500
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 89 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/499
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 90 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/498
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 91 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/497
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 92 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/496
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 93 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/494
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 94 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/493
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 95 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/492
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 96 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/491
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 97 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/490
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 98 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/489
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 99 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/488
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 100 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/487
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 101 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/485
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 102 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/483
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 103 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/482
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 104 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/480
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 105 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/478
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 106 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/477
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 107 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/476
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 108 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/475
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 109 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/473
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 110 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==Fetching post: http://rengganiez.multiply.com/journal/item/472
+== Sat Sep 08 01:10:20 KST 2012 ===--> parsing page 111 of 524 page(s)
+== Sat Sep 08 01:10:20 KST 2012 ==
