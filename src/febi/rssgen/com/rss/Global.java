@@ -34,12 +34,12 @@ public class Global {
 
     public static final String VERSION = "0.1.7";
     public static final String UPDATE = "- bugs fixing..\n- Update on Locale"
-            + "\nDate format simplified."
-            + "\nDate format bug repair, use no StringToTime"
-            + "\n\"Table view\" parsing bug fixed"
-            + "\nRemove apache http lib dependency"
-            + "\nSet checkbox defaults"
-            + "\nVersion visible in main window";
+            + "\n- Date format simplified."
+            + "\n- Date format bug repair, use no StringToTime"
+            + "\n- \"Table view\" parsing bug fixed"
+            + "\n- Remove apache http lib dependency"
+            + "\n- Set checkbox defaults"
+            + "\n- Version visible in main window";
     public static final SimpleDateFormat formatter =
             new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     public static final SimpleDateFormat postDateFormat =
