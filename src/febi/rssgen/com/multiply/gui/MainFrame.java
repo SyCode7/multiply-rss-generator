@@ -273,7 +273,7 @@ public class MainFrame extends javax.swing.JFrame implements TaskViewer {
         taskList.add(new TaskItem("Summary", "", this));
 
         MultiplyRSSGeneratorHandler.startProcess(
-                txt_user.getText(),
+                txt_user.getText().trim(),
                 chk_journal.isSelected(),
                 chk_reviews.isSelected(),
                 chk_recipes.isSelected(),
