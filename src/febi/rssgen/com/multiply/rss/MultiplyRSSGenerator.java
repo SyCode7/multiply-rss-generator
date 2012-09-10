@@ -74,7 +74,7 @@ public class MultiplyRSSGenerator extends RSSGenerator {
     private Pattern patternTag;
     //the extension for images
     private String attachmentSuffix = "&amp;nmid=0";
-    private String attachmentExtension = "&.jpg";
+    private String attachmentExtension = "&amp;.jpg";
 
     public MultiplyRSSGenerator(String blogTitle, String link, String folder) {
 
