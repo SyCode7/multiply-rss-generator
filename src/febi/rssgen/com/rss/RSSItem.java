@@ -53,6 +53,10 @@ public class RSSItem extends RSSTerm {
 
         categories = new ArrayList<RSSCategoryInner>();
         tags = new ArrayList<RSSTagInner>();
+        
+        //add default category and tags
+        categories.add(new RSSCategoryInner(getTypeString()));
+        tags.add(new RSSTagInner(getTypeString()));
     }
 
     public String getTitle() {
