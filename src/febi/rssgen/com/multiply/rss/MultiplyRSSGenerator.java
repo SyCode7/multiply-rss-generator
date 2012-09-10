@@ -22,9 +22,12 @@
 package febi.rssgen.com.multiply.rss;
 
 import febi.rssgen.com.rss.Global;
+import febi.rssgen.com.rss.RSSCategoryInner;
 import febi.rssgen.com.rss.RSSGenerator;
 import febi.rssgen.com.rss.RSSItem;
 import febi.rssgen.com.rss.RSSItemComment;
+import febi.rssgen.com.rss.RSSItemImage;
+import febi.rssgen.com.rss.RSSTagInner;
 import febi.rssgen.com.rss.RSSTerm;
 import java.util.ArrayList;
 import java.util.Date;
@@ -57,10 +60,21 @@ public class MultiplyRSSGenerator extends RSSGenerator {
     private int quoteAuthorIndex = 1;
     private int quoteContentIndex = 2;
     private int contentCommentIndex = 7;
+    //for attachment
+    private int attachmentLinkIndex = 1;
+    //for tags
+    private int tagLinkIndex = 1;
     private String commentSearchPattern;
     private Pattern patternComment;
     private String quoteSearchPattern;
     private Pattern patternQuote;
+    private String attachmentSearchPattern;
+    private Pattern patternAttachment;
+    private String tagSearchPattern;
+    private Pattern patternTag;
+    //the extension for images
+    private String attachmentSuffix = "&amp;nmid=0";
+    private String attachmentExtension = "&.jpg";
 
     public MultiplyRSSGenerator(String blogTitle, String link, String folder) {
 
@@ -116,6 +130,14 @@ public class MultiplyRSSGenerator extends RSSGenerator {
         this.quoteSearchPattern = "<a href=.*?>(.*?)</a.*?<i>(.*?)</i>";
         this.patternQuote = Pattern.compile(quoteSearchPattern, Pattern.DOTALL);
 
+        //image attachment pattern
+        this.attachmentSearchPattern = "<img .*?src=\"(.*?)\"";
+        this.patternAttachment = Pattern.compile(attachmentSearchPattern, Pattern.DOTALL);
+
+        //tag pattern
+        this.tagSearchPattern = "<a rel='tag'.*?>(.*?)</a>";
+        this.patternTag = Pattern.compile(tagSearchPattern, Pattern.DOTALL);
+
     }
 
     @Override
@@ -161,12 +183,10 @@ public class MultiplyRSSGenerator extends RSSGenerator {
             authorPost = matcher.group(this.authorIndex);
             idPost = Integer.parseInt(matcher.group(this.postIdIndex));
 
-
             //process the date
             dateStr = matcher.group(this.dateIndex)
                     .replaceAll(",|'| an |at|on", "").trim();
 
-//            pubDate = new StringToTime(dateStr);
             pubDate = Global.getPostDate(dateStr);
 
             if (!this.folder.equals("notes")) {
@@ -204,8 +224,7 @@ public class MultiplyRSSGenerator extends RSSGenerator {
                 dateStr = commentMatcher.group(this.dateCommentIndex)
                         .replaceAll(",|'| an |at|on", "").trim();
 
-//                dateComment =
-//                        new Date((new StringToTime(dateStr)).getTime() + (index * 1000));
+                // comment post date is generated in sequence, additional of 1 second
                 dateComment =
                         new Date((Global.getCommentPostDate(dateStr)).getTime() + (index * 1000));
 
@@ -233,12 +252,48 @@ public class MultiplyRSSGenerator extends RSSGenerator {
             }
             //end processing comments
 
+            RSSItem newItem = new RSSItem(titlePost, linkPost, pubDate, descriptionPost,
+                    authorPost, idPost, commentList);
+
+            //obtain attachments            
+            //parse description for images
+            Matcher attachmentMatcher = patternAttachment.matcher(descriptionPost);
+            int attachmentFound = 0;
+            while (attachmentMatcher.find()) {
+                String imageLink = attachmentMatcher.group(attachmentLinkIndex);
+                String newImageLink = getGoodImageLink(imageLink);
+
+                //add to item list
+                items.add(new RSSItemImage(newImageLink, newImageLink, pubDate, authorPost));
+                attachmentFound++;
+            }
+            if (attachmentFound > 0) {
+                descriptionPost = 
+                        descriptionPost.replaceAll(attachmentSuffix, attachmentExtension);
+                newItem.setDescription(descriptionPost);
+            }
+
+            //obtain tags
+            //parse page for tags
+            Matcher attachmentTag = patternTag.matcher(cleanedStr);
+            while (attachmentTag.find()) {
+
+                String tag = attachmentTag.group(tagLinkIndex);
+                //add to item list
+                newItem.getTags().add(new RSSTagInner(tag));
+                newItem.getCategories().add(new RSSCategoryInner(tag));
+            }
+
             //store the object
-            items.add(new RSSItem(titlePost, linkPost, pubDate, descriptionPost,
-                    authorPost, idPost, commentList));
+            items.add(newItem);
 
         }
 
         return items;
+    }
+
+    private String getGoodImageLink(String url) {
+        String newImageLink = url.replaceAll(attachmentSuffix, attachmentExtension);
+        return newImageLink;
     }
 }

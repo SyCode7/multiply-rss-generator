@@ -32,14 +32,18 @@ import java.util.Date;
  */
 public class Global {
 
-    public static final String VERSION = "0.1.7";
+    public static final String VERSION = "0.1.8";
     public static final String UPDATE = "- bugs fixing..\n- Update on Locale"
             + "\n- Date format simplified."
             + "\n- Date format bug repair, use no StringToTime"
             + "\n- \"Table view\" parsing bug fixed"
             + "\n- Remove apache http lib dependency"
             + "\n- Set checkbox defaults"
-            + "\n- Version visible in main window";
+            + "\n- Version visible in main window"
+            + "\n- alternate parse on link bug"
+            + "\n- image attachment support"
+            + "\n- tags support"
+            + "\n- category support";
     public static final SimpleDateFormat formatter =
             new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     public static final SimpleDateFormat postDateFormat =

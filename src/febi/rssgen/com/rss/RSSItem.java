@@ -19,7 +19,6 @@
  * @link http://code.google.com/p/multiply-rss-generator/
  * @year 2012
  */
-
 package febi.rssgen.com.rss;
 
 import febi.rssgen.com.util.MailDateFormatter;
@@ -35,22 +34,25 @@ public class RSSItem extends RSSTerm {
     private String author = "";
     private int id = 0;
     private ArrayList<RSSItemComment> comments = null;
-    private ArrayList<String> categories = null;
-    private ArrayList<String> tags = null;
+    private ArrayList<RSSCategoryInner> categories = null;
+    private ArrayList<RSSTagInner> tags = null;
     private static int type = 0;
 
     public RSSItem(String title, String link, Date date, String description,
             String author, int id, ArrayList<RSSItemComment> comments) {
-        
-        super("title",RSSTerm.POST);
-        
+
+        super("title", RSSTerm.POST);
+
         this.title = title;
-        this.link = link;
+        this.link = getCleanedURL(link);
         this.date = date;
-        this.description = description;
+        this.description = repairDescription(description);
         this.author = author;
         this.id = id;
         this.comments = comments;
+
+        categories = new ArrayList<RSSCategoryInner>();
+        tags = new ArrayList<RSSTagInner>();
     }
 
     public String getTitle() {
@@ -82,7 +84,7 @@ public class RSSItem extends RSSTerm {
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.description = repairDescription(description);
     }
 
     public String getAuthor() {
@@ -114,13 +116,14 @@ public class RSSItem extends RSSTerm {
         StringBuilder res = new StringBuilder();
         res.append("\t\t<item>\n");
 
-        res.append("\t\t\t<wp:post_type>post</wp:post_type>\n");
+        res.append("\t\t\t<wp:post_type>").append(getTypeString())
+                .append("</wp:post_type>\n");
         res.append("\t\t\t<wp:status>publish</wp:status>\n");
 
         res.append("\t\t\t<title>").append(stripslashes(this.title)).append("</title>\n");
         res.append("\t\t\t<description></description>\n");
         res.append("\t\t\t<content:encoded>");
-        res.append(stripslashes(this.description));
+        res.append(this.description);
         res.append("</content:encoded>\n");
         if (this.date != null) {
             res.append("\t\t\t<pubDate>");
@@ -138,7 +141,6 @@ public class RSSItem extends RSSTerm {
         }
 
         //preparing comments
-        int comment_id = 1;
         if (this.comments instanceof ArrayList && this.comments != null) {
             for (RSSItemComment comment : this.comments) {
                 res.append(comment.getFormatted());
@@ -146,6 +148,15 @@ public class RSSItem extends RSSTerm {
 
         }
 
+        //tags
+        for (RSSTagInner tag : tags) {
+            res.append(tag.getFormatted());
+        }
+        //categories
+        for (RSSCategoryInner category : categories) {
+            res.append(category.getFormatted());
+        }
+        
         res.append("\t\t</item>\n");
         return res.toString();
     }
@@ -163,20 +174,33 @@ public class RSSItem extends RSSTerm {
         return ret;
     }
 
-    public ArrayList<String> getCategories() {
+    public ArrayList<RSSCategoryInner> getCategories() {
         return categories;
     }
 
-    public void setCategories(ArrayList<String> categories) {
+    public void setCategories(ArrayList<RSSCategoryInner> categories) {
         this.categories = categories;
     }
 
-    public ArrayList<String> getTags() {
+    public ArrayList<RSSTagInner> getTags() {
         return tags;
     }
 
-    public void setTags(ArrayList<String> tags) {
+    public void setTags(ArrayList<RSSTagInner> tags) {
         this.tags = tags;
+    }
+    
+    private String getCleanedURL(String url){
+        String newUrl = url;
+        if(newUrl.startsWith("//")) {
+            newUrl = url.replaceFirst("//", "http://");
+        }
+        
+        return newUrl;
+    }
+    
+    private String repairDescription(String desc){
+        return desc.replaceAll("src=\"//", "src=\"http://");
     }
 
     @Override

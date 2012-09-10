@@ -198,8 +198,6 @@ public class MultiplyRSSGeneratorHandler implements Runnable {
 
             rawString = PageProcessor.getPageData(url);
 
-            //Logger.dumpToFile("/home/itrc169/public_html/posts/page_" + counter + ".htm", rawString);
-
             Logger.outputMessageLn("=--> parsing page " + counter + " of " + totalPage + " page(s)");
             rssList.addAll(rssGen.getParsedItems(rawString));
 

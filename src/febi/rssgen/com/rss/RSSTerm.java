@@ -27,8 +27,8 @@ public abstract class RSSTerm {
     private String name;
     private String nicename;
     private int type;
-    public static int CATEGORY = 0;
-    public static int TAG = 1;
+    public static final int CATEGORY = 0;
+    public static final int TAG = 1;
     public static final int POST = 2;
     public static final int COMMENT = 3;
     public static final int ATTACHMENT = 4;
@@ -54,6 +54,17 @@ public abstract class RSSTerm {
 
     public void setType(int type) {
         this.type = type;
+    }
+    
+    public String getTypeString(){
+        switch(type){
+            case CATEGORY: return "category";
+            case TAG: return "post_tag";
+            case POST: return "post";
+            case COMMENT: return "comment";
+            case ATTACHMENT: return "attachment";
+        }
+        return "";
     }
 
     public abstract String getFormatted();

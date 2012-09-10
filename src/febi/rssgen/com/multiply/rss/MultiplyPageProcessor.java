@@ -19,7 +19,6 @@
  * @link http://code.google.com/p/multiply-rss-generator/
  * @year 2012
  */
-
 package febi.rssgen.com.multiply.rss;
 
 import febi.com.log.Logger;
@@ -67,7 +66,7 @@ public class MultiplyPageProcessor extends PageProcessor {
 //        System.exit(0);
 
         this.itemSearchPattern =
-                "<div id=\"item_"+multiplyID+":" + folder + ":(.*?)\".*?>";
+                "<div id=\"item_" + multiplyID + ":" + folder + ":(.*?)\".*?>";
         this.alternateSearchPattern =
                 "<td  align=left><span class=subject.*?href=(.*?)>";
 
@@ -98,9 +97,6 @@ public class MultiplyPageProcessor extends PageProcessor {
             Logger.outputMessageLn("-->Fecthing: " + url_paged);
 
             rawString = getPageData(url_paged);
-
-//            Logger.dumpToFile("/home/itrc169/public_html/page_" + folder + "_"+
-//                    startPost+".htm", rawString);
 
             pageList = parsePageUrl(rawString);
 
@@ -145,12 +141,10 @@ public class MultiplyPageProcessor extends PageProcessor {
         String url;
 
         while (m.find()) {
-            url = folder+URL_INFIX+m.group(POST_ID);
+            url = folder + URL_INFIX + m.group(POST_ID);
 
             if (!url.startsWith(HTTP_STRING)) {
-                url = this.getUrl() + "/" + url;
-                url = url.replaceAll("//", "/");
-                url = url.replaceAll(":/", "://");
+                url = getCleanedURL(url);
             }
 
             list.add(url);
@@ -168,7 +162,7 @@ public class MultiplyPageProcessor extends PageProcessor {
                 url = m.group(POST_ID);
 
                 if (!url.startsWith(HTTP_STRING)) {
-                    url = this.getUrl() + "/" + url;
+                    url = getCleanedURL(url);
                 }
 
                 list.add(url);
@@ -177,5 +171,12 @@ public class MultiplyPageProcessor extends PageProcessor {
         }
 
         return list;
+    }
+
+    public String getCleanedURL(String url) {
+        String newURL = this.getUrl() + "/" + url;
+        newURL = newURL.replaceAll("//", "/");
+        newURL = newURL.replaceAll(":/", "://");
+        return newURL;
     }
 }

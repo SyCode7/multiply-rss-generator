@@ -25,12 +25,9 @@ public class PostRegexTest {
     private static int contentIndex = 3;
 
     public static void main(String args[]) throws IOException {
-        String fileContents = readEntireFile("/home/itrc169/public_html/test.4.htm");
+        String fileContents = readEntireFile("/home/itrc169/public_html/havban/test.htm");
         //new line cleansing
         fileContents = fileContents.replaceAll("(?:\\r|)\\n", " ");
-
-        //non ascri cleansing
-        fileContents = fileContents.replaceAll("[^\\p{ASCII}]", "");
 
 //        System.out.println(fileContents);
 //        String patternString = "<div id=\"item_.+:journal:.*>.*<a rel='bookmark' "
@@ -45,12 +42,7 @@ public class PostRegexTest {
 //                        + "</span></a>.*?(<nobr>|</a> on )(.*?)(</nobr>| for)(.+?)"
 //                        + "<div id=\"item_body\"(.+?)>(.*?)(?:</div>|)(?:<br clear=right>"
 //                        + "<img .*?>|)<div style='clear:both'><!-- --></div>";
-        patternString = "<div id=\"item_(.+?):" + "notes" + ":(.*?)\".*?>.*?(?:</div>|)"
-                    + "(?:.*?<a rel='bookmark'.*?itemprop='url'><span itemprop='name'>|)"
-                    + "(?:.*?<td class=cattitle>)(.*?)(</span></a>|</div>|</td>"
-                    + "<td class=itemsubsub>).*?(<nobr>|</a> on )(.*?)(</nobr>| for)(?:.+?"
-                    + "<div id=\"item_body\".+?>(.*?)</div>(</div></div></div>)"
-                    + "?(<br clear=right>|<div class=)|)";
+        patternString = "<div id=\"item_(.+?):notes:(.*?)\".*?>.*?(?:</div>|)(?:.*?<a rel='bookmark'.*?itemprop='url'><span itemprop='name'>|)(?:.*?<td class=cattitle>)(.*?)(</span></a>|</div>|</td><td class=itemsubsub>).*?(<nobr>|</a> on )(.*?)(</nobr>| for)(?:.+?<div id=\"item_body\".+?>(.*?)</div>(</div></div></div>)?(<br clear=right>|<div class=)|)";
         String text = "<a href=\"ad1\">sdqs</a><a href=\"ad2\">sds</a><a href=ad3>qs</a>";
 
 
@@ -61,7 +53,7 @@ public class PostRegexTest {
 
 //        System.out.println(m.find());
         int i = 0;
-        if (m.find()) {
+        while (m.find()) {
 
             System.out.println(i++ + m.group(authorIndex)
                     + " - " + m.group(dateIndex)
@@ -69,17 +61,18 @@ public class PostRegexTest {
                     + " - " + m.group(titleIndex)
                     + " - " + m.group(contentIndex));
             //process the date
-            String dateStr = m.group(dateIndex)
-                    .replaceAll(",|'| an |at|on", "");
-            Date pubDate = Global.getPostDate(dateStr);
+//            String dateStr = m.group(dateIndex)
+//                    .replaceAll(",|'| an |at|on", "");
+//            Date pubDate = Global.getPostDate(dateStr);
+//
+//            System.out.println(m.group(contentIndex).replaceAll("(<div.*>.*</div>|</div>)", ""));
+//
+//            System.out.println(m.group(contentIndex).replaceAll("</div>", ""));
+//            //additional content index
+//            int addContent = 8;
+//            System.out.println(m.group(addContent).endsWith("</span> "));
 
-            System.out.println(m.group(contentIndex).replaceAll("(<div.*>.*</div>|</div>)", ""));
-
-            System.out.println(m.group(contentIndex).replaceAll("</div>", ""));
-            //additional content index
-            int addContent = 8;
-            System.out.println(m.group(addContent).endsWith("</span> "));
-
+//            System.out.println(i++ + m.group(1));
 
         }
 
