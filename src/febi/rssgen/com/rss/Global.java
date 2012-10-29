@@ -32,7 +32,7 @@ import java.util.Date;
  */
 public class Global {
 
-    public static final String VERSION = "0.1.8";
+    public static final String VERSION = "0.2.0";
     public static final String UPDATE = "- bugs fixing..\n- Update on Locale"
             + "\n- Date format simplified."
             + "\n- Date format bug repair, use no StringToTime"
@@ -43,7 +43,10 @@ public class Global {
             + "\n- alternate parse on link bug"
             + "\n- image attachment support"
             + "\n- tags support"
-            + "\n- category support";
+            + "\n- category support"
+            + "\n\nNew in 0.2.0"
+            + "\n- faster and robust parsing using jsoup";
+            
     public static final SimpleDateFormat formatter =
             new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     public static final SimpleDateFormat postDateFormat =

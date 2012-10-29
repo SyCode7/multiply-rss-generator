@@ -25,8 +25,10 @@ import febi.com.log.Logger;
 import febi.rssgen.com.multiply.gui.TaskItem;
 import febi.rssgen.com.rss.PageProcessor;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 /**
  *
@@ -35,11 +37,7 @@ import java.util.regex.Pattern;
 public class MultiplyPageProcessor extends PageProcessor {
 
     public static final String MULTIPLY_STRING = ".multiply.com";
-    private String itemSearchPattern;
-    private String alternateSearchPattern;
     private String folder;
-    private Pattern pattern;
-    private static final int POST_ID = 1;
     private static final int POST_PER_PAGE = 20;
     private static final String URL_INFIX = "/item/";
     private TaskItem summary;
@@ -65,14 +63,8 @@ public class MultiplyPageProcessor extends PageProcessor {
         String multiplyID = this.getUrl().split("//")[1].split("\\.")[0];
 //        System.exit(0);
 
-        this.itemSearchPattern =
-                "<div id=\"item_" + multiplyID + ":" + folder + ":(.*?)\".*?>";
-        this.alternateSearchPattern =
-                "<td  align=left><span class=subject.*?href=(.*?)>";
-
         //initiate Multiply RSSGen
-        this.setRssGen(new MultiplyRSSGenerator(this.getUrl(),
-                "Multiply RSS - " + this.getUrl(), folder));
+        this.setRssGen(MultiplyRSSGeneratorFactory.createMultiplyRSSGenerator(url, folder));
 
         this.folder = folder;
         this.summary = summary;
@@ -130,18 +122,13 @@ public class MultiplyPageProcessor extends PageProcessor {
 
         ArrayList<String> list = new ArrayList();
 
-        //pattern
-        pattern = Pattern.compile(this.itemSearchPattern, Pattern.DOTALL);
-
-        //new line cleansing
-        String cleanedStr = page.replaceAll("(?:\\r|)\\n", " ");
-        // Match it.
-        Matcher m = pattern.matcher(cleanedStr);
-
         String url;
 
-        while (m.find()) {
-            url = folder + URL_INFIX + m.group(POST_ID);
+        Document doc = Jsoup.parse(page);
+
+        Elements items = doc.select("div.item");
+        for (Element item : items) {
+            url = folder + URL_INFIX + item.attr("id").split(":")[2];
 
             if (!url.startsWith(HTTP_STRING)) {
                 url = getCleanedURL(url);
@@ -151,15 +138,27 @@ public class MultiplyPageProcessor extends PageProcessor {
         }
 
         if (list.size() < POST_PER_PAGE) {
-            //change patern
-            //do something here
-            pattern = Pattern.compile(this.alternateSearchPattern, Pattern.DOTALL);
+            //change searched element
+            items = doc.select("span.subject");
+            for (Element item : items) {
+                //for table format
+                url = item.select("a").first().attr("href");
 
-            m = pattern.matcher(cleanedStr);
+                if (!url.startsWith(HTTP_STRING)) {
+                    url = getCleanedURL(url);
+                }
 
-            while (m.find()) {
-                //post id here is actually an actual link :P
-                url = m.group(POST_ID);
+                list.add(url);
+            }
+
+        }
+        
+        if (list.size() < POST_PER_PAGE) {
+            //change searched element
+            items = doc.select("span.itemboxsub");
+            for (Element item : items) {
+                //handling notes
+                url = folder + URL_INFIX + item.parent().attr("id").split(":")[2];
 
                 if (!url.startsWith(HTTP_STRING)) {
                     url = getCleanedURL(url);
