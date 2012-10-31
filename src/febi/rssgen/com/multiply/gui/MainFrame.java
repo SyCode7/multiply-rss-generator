@@ -26,7 +26,9 @@ import febi.rssgen.com.rss.Global;
 import febi.rssgen.multiply.MultiplyRSSGeneratorHandler;
 import java.io.File;
 import java.io.PrintStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.prefs.Preferences;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
@@ -47,6 +49,8 @@ public class MainFrame extends javax.swing.JFrame implements TaskViewer {
     private Preferences prefs;
     AboutFrame aboutFrame;
     ArrayList<TaskItem> taskList;
+    
+    SimpleDateFormat dtFmt = new SimpleDateFormat("yyyy-MM-dd");
 
     /**
      * Creates new form MainFrame
@@ -66,9 +70,9 @@ public class MainFrame extends javax.swing.JFrame implements TaskViewer {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        rdo_group_date = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         txt_user = new javax.swing.JTextField();
         chk_journal = new javax.swing.JCheckBox();
         chk_reviews = new javax.swing.JCheckBox();
@@ -84,6 +88,13 @@ public class MainFrame extends javax.swing.JFrame implements TaskViewer {
         jScrollPane2 = new javax.swing.JScrollPane();
         txt_notification = new javax.swing.JTextArea();
         lbl_version = new javax.swing.JLabel();
+        chk_photos = new javax.swing.JCheckBox();
+        jLabel6 = new javax.swing.JLabel();
+        dt_start = new com.michaelbaranov.microba.calendar.DatePicker();
+        jLabel8 = new javax.swing.JLabel();
+        dt_end = new com.michaelbaranov.microba.calendar.DatePicker();
+        radio_allDate = new javax.swing.JRadioButton();
+        radio_rangedDate = new javax.swing.JRadioButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -93,11 +104,11 @@ public class MainFrame extends javax.swing.JFrame implements TaskViewer {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jLabel1.setText("Multiply Username / Address");
+        jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getStyle() | java.awt.Font.BOLD));
+        jLabel1.setText("Multiply Username / Address   *ex. havban or havban.multiply.com");
 
+        jLabel2.setFont(jLabel2.getFont().deriveFont(jLabel2.getFont().getStyle() | java.awt.Font.BOLD));
         jLabel2.setText("Folder");
-
-        jLabel3.setText("*ex. havban or havban.multiply.com");
 
         chk_journal.setText("Journal");
 
@@ -107,8 +118,10 @@ public class MainFrame extends javax.swing.JFrame implements TaskViewer {
 
         chk_notes.setText("Notes");
 
+        jLabel4.setFont(jLabel4.getFont().deriveFont(jLabel4.getFont().getStyle() | java.awt.Font.BOLD));
         jLabel4.setText("Output");
 
+        jLabel5.setFont(jLabel5.getFont().deriveFont(jLabel5.getFont().getStyle() | java.awt.Font.BOLD));
         jLabel5.setText("Save to Folder");
 
         jButton1.setText("Browse");
@@ -138,6 +151,27 @@ public class MainFrame extends javax.swing.JFrame implements TaskViewer {
         jScrollPane2.setViewportView(txt_notification);
 
         lbl_version.setText("Version: 0.0");
+
+        chk_photos.setText("Photos");
+
+        jLabel6.setFont(jLabel6.getFont().deriveFont(jLabel6.getFont().getStyle() | java.awt.Font.BOLD));
+        jLabel6.setText("Date Range");
+
+        jLabel8.setText("to");
+
+        radio_allDate.setText("ALL");
+        radio_allDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radio_allDateActionPerformed(evt);
+            }
+        });
+
+        radio_rangedDate.setText("Ranged");
+        radio_rangedDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radio_rangedDateActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("RSSGen");
 
@@ -174,77 +208,104 @@ public class MainFrame extends javax.swing.JFrame implements TaskViewer {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(chk_journal)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(chk_reviews)
-                        .addGap(44, 44, 44)
-                        .addComponent(chk_recipes)
-                        .addGap(36, 36, 36)
-                        .addComponent(chk_notes))
+                        .addGap(18, 18, 18)
+                        .addComponent(chk_recipes))
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(radio_allDate)
+                                .addGap(18, 18, 18)
+                                .addComponent(radio_rangedDate)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(148, 148, 148)
+                                .addComponent(chk_notes)
+                                .addGap(18, 18, 18)
+                                .addComponent(chk_photos))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(dt_start, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(7, 7, 7)
+                                .addComponent(jLabel8)
+                                .addGap(18, 18, 18)
+                                .addComponent(dt_end, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_process, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(txt_outputFolder)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txt_outputFolder, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jLabel3))
-                        .addComponent(jLabel5))
-                    .addComponent(txt_user)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lbl_version)
-                        .addGap(18, 18, 18)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txt_user, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lbl_version)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
+                            .addComponent(txt_user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbl_version))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(chk_journal)
                             .addComponent(chk_reviews)
                             .addComponent(chk_recipes)
-                            .addComponent(chk_notes))
+                            .addComponent(chk_notes)
+                            .addComponent(chk_photos))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(radio_allDate)
+                                        .addComponent(radio_rangedDate))
+                                    .addComponent(dt_start, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel8)
+                            .addComponent(dt_end, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txt_outputFolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_process))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btn_process)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 4, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -269,8 +330,17 @@ public class MainFrame extends javax.swing.JFrame implements TaskViewer {
         if (chk_notes.isSelected()) {
             taskList.add(new TaskItem("Notes", "", this));
         }
+        if (chk_photos.isSelected()) {
+            taskList.add(new TaskItem("Photos", "", this));
+        }
 
         taskList.add(new TaskItem("Summary", "", this));
+        
+        Date startDate=null, endDate=null;
+        if(radio_rangedDate.isSelected()){
+            startDate = dt_start.getDate();
+            endDate = dt_end.getDate();
+        }
 
         MultiplyRSSGeneratorHandler.startProcess(
                 txt_user.getText().trim(),
@@ -278,7 +348,10 @@ public class MainFrame extends javax.swing.JFrame implements TaskViewer {
                 chk_reviews.isSelected(),
                 chk_recipes.isSelected(),
                 chk_notes.isSelected(),
+                chk_photos.isSelected(),
                 txt_outputFolder.getText(),
+                startDate,
+                endDate,
                 new JComponent[]{btn_process},
                 null,
                 this,
@@ -310,6 +383,14 @@ public class MainFrame extends javax.swing.JFrame implements TaskViewer {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         JOptionPane.showMessageDialog(this, "Not yet implemented");
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void radio_rangedDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radio_rangedDateActionPerformed
+        setDateRangeActive(radio_rangedDate.isSelected());
+    }//GEN-LAST:event_radio_rangedDateActionPerformed
+
+    private void radio_allDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radio_allDateActionPerformed
+        setDateRangeActive(!radio_allDate.isSelected());
+    }//GEN-LAST:event_radio_allDateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -349,14 +430,18 @@ public class MainFrame extends javax.swing.JFrame implements TaskViewer {
     private javax.swing.JButton btn_process;
     private javax.swing.JCheckBox chk_journal;
     private javax.swing.JCheckBox chk_notes;
+    private javax.swing.JCheckBox chk_photos;
     private javax.swing.JCheckBox chk_recipes;
     private javax.swing.JCheckBox chk_reviews;
+    private com.michaelbaranov.microba.calendar.DatePicker dt_end;
+    private com.michaelbaranov.microba.calendar.DatePicker dt_start;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -365,6 +450,9 @@ public class MainFrame extends javax.swing.JFrame implements TaskViewer {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lbl_version;
+    private javax.swing.JRadioButton radio_allDate;
+    private javax.swing.JRadioButton radio_rangedDate;
+    private javax.swing.ButtonGroup rdo_group_date;
     private javax.swing.JTextArea txt_notification;
     private javax.swing.JTextArea txt_output;
     private javax.swing.JTextField txt_outputFolder;
@@ -389,13 +477,23 @@ public class MainFrame extends javax.swing.JFrame implements TaskViewer {
         chk_notes.setSelected(true);
         chk_recipes.setSelected(true);
         chk_reviews.setSelected(true);
+        chk_photos.setSelected(true);
 
         //set version label
         lbl_version.setText("Version: " + Global.VERSION);
 
         DefaultCaret caret = (DefaultCaret) txt_output.getCaret();
         caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
-
+        
+        //dates
+        rdo_group_date.add(radio_allDate);
+        rdo_group_date.add(radio_rangedDate);
+        radio_allDate.setSelected(true);
+        setDateRangeActive(false);
+        
+        dt_start.setDateFormat(dtFmt);
+        dt_end.setDateFormat(dtFmt);
+        
     }
 
     private void saveFields() {
@@ -442,5 +540,10 @@ public class MainFrame extends javax.swing.JFrame implements TaskViewer {
         }
 
         return foundItem;
+    }
+    
+    private void setDateRangeActive(boolean b){
+        dt_start.setEnabled(b);
+        dt_end.setEnabled(b);
     }
 }

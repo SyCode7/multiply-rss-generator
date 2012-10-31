@@ -23,8 +23,12 @@ package febi.rssgen.com.multiply.rss;
 
 import febi.com.log.Logger;
 import febi.rssgen.com.multiply.gui.TaskItem;
+import febi.rssgen.com.rss.Global;
+import febi.rssgen.com.rss.PageData;
 import febi.rssgen.com.rss.PageProcessor;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -35,14 +39,22 @@ import org.jsoup.select.Elements;
  * @author itrc169
  */
 public class MultiplyPageProcessor extends PageProcessor {
-
+    
+    public static final String JOURNAL = "journal";
+    public static final String REVIEWS = "reviews";
+    public static final String RECIPES = "recipes";
+    public static final String NOTES = "notes";
+    public static final String PHOTOS = "photos";
+    
     public static final String MULTIPLY_STRING = ".multiply.com";
     private String folder;
     private static final int POST_PER_PAGE = 20;
     private static final String URL_INFIX = "/item/";
     private TaskItem summary;
+    private Date startDate, endDate;
 
-    public MultiplyPageProcessor(String url, String folder, TaskItem summary) {
+    public MultiplyPageProcessor(String url, String folder, TaskItem summary,
+            Date startDate, Date endDate) {
 
         super(url);
 
@@ -60,7 +72,7 @@ public class MultiplyPageProcessor extends PageProcessor {
             }
         }
 //        System.out.println(this.getUrl().split("//")[1]);
-        String multiplyID = this.getUrl().split("//")[1].split("\\.")[0];
+//        String multiplyID = this.getUrl().split("//")[1].split("\\.")[0];
 //        System.exit(0);
 
         //initiate Multiply RSSGen
@@ -68,13 +80,16 @@ public class MultiplyPageProcessor extends PageProcessor {
 
         this.folder = folder;
         this.summary = summary;
+        
+        this.startDate = startDate;
+        this.endDate = endDate;
 
     }
 
     @Override
     public ArrayList getPageResults() {
-        ArrayList results = new ArrayList();
-        ArrayList pageList;
+        ArrayList<PageData> results = new ArrayList();
+        ArrayList<PageData> pageList;
 
         //subfolder
         String subFolder = "/" + folder + "/?&page_start=";
@@ -114,27 +129,71 @@ public class MultiplyPageProcessor extends PageProcessor {
         } else {
             summary.setDesc("Pages parsed perfectly.");
         }
+        
+        //if it's a photos folder, just skip it, we'll handle it later in the
+        //MultiplyPhotoRSSGenerator class
+        if(startDate !=null && !folder.equals(PHOTOS)){
+            summary.setDesc("Filtering page by preferred date range.");
+            
+            ArrayList<PageData> listToRemove = new ArrayList();
+            for (Iterator<PageData> it = results.iterator(); it.hasNext();) {
+                PageData page = it.next();
+                if(page.getDate().after(endDate)
+                        || page.getDate().before(startDate)) {
+                    //remove from list
+                    listToRemove.add(page);
+                }
+            }
+            
+            results.removeAll(listToRemove);
+        }
 
         return results;
     }
 
-    public ArrayList<String> parsePageUrl(String page) {
+    public ArrayList<PageData> parsePageUrl(String page) {
 
-        ArrayList<String> list = new ArrayList();
+        ArrayList<PageData> list = new ArrayList();
 
-        String url;
+        String url=null;
+        Date date=null;
 
         Document doc = Jsoup.parse(page);
 
-        Elements items = doc.select("div.item");
+        Elements items = doc.select("div.item").parents();
+        if(items == null) {
+            items = doc.select("span.itemboxsub");
+        }
+        
         for (Element item : items) {
-            url = folder + URL_INFIX + item.attr("id").split(":")[2];
+            try{
+                url = folder + URL_INFIX + item.attr("id").split(":")[2];
+            } catch (ArrayIndexOutOfBoundsException e) {
+                Global.printReportGuide(item.attr("id"));
+            }
 
             if (!url.startsWith(HTTP_STRING)) {
                 url = getCleanedURL(url);
             }
+            
+            //obtain the date
+            Element dateEl = item.select("nobr").first();
+            if (dateEl != null) {
+                date = Global.getPostDate(dateEl.html().
+                        replaceAll(",|'| an |at|on", "").trim());
+            } //alternate handling
+            else {
+                dateEl = item.select("div.itemsubsub[itemprop=description]").first();
+                try{
+                date = Global.getPostDate(
+                        dateEl.html().split(" on ")[1].split(" for ")[0]
+                        .replaceAll(",|'| an |at|on", "").trim());
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    Global.printReportGuide(dateEl.html());
+                }
+            }
 
-            list.add(url);
+            list.add(new PageData(url,date));
         }
 
         if (list.size() < POST_PER_PAGE) {
@@ -147,26 +206,53 @@ public class MultiplyPageProcessor extends PageProcessor {
                 if (!url.startsWith(HTTP_STRING)) {
                     url = getCleanedURL(url);
                 }
+                
+                //obtain the date
+                Element dateEl = item.select("nobr").first();
+                if (dateEl != null) {
+                    date = Global.getPostDate(dateEl.html()
+                            .replaceAll(",|'| an |at|on", "").trim());
+                } //alternate handling
+                else {
+                    dateEl = item.parent();
 
-                list.add(url);
+                    try{
+                    date = Global.getPostDate(
+                            dateEl.ownText().split(" on ")[1].split(" for ")[0]
+                            .replaceAll(",|'| an |at|on", "").trim());
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                    try{
+                        //alternative date  2009/01/05 08:54
+                        date = Global.getPostDate(dateEl.ownText().split(" wrote ")[1]
+                                .replaceAll(",|'| an |at|on", "").trim());
+                    }catch (ArrayIndexOutOfBoundsException e1){
+                        Global.printReportGuide(dateEl.ownText());
+                    }
             }
-
+                }
+                
+                list.add(new PageData(url,date));
+            }
         }
         
-        if (list.size() < POST_PER_PAGE) {
+        //handling photo
+        if(list.size() < POST_PER_PAGE) {
+//            System.out.println("handling using last case.. alias photo");
             //change searched element
-            items = doc.select("span.itemboxsub");
+            items = doc.select("div.album");
             for (Element item : items) {
-                //handling notes
-                url = folder + URL_INFIX + item.parent().attr("id").split(":")[2];
+                //for table format
+                url = item.select("a").first().attr("href");
 
                 if (!url.startsWith(HTTP_STRING)) {
                     url = getCleanedURL(url);
                 }
-
-                list.add(url);
+                
+                //obtain the date
+                //skipped for photos (no way to obtain oy right now
+                
+                list.add(new PageData(url,date));
             }
-
         }
 
         return list;
@@ -177,5 +263,6 @@ public class MultiplyPageProcessor extends PageProcessor {
         newURL = newURL.replaceAll("//", "/");
         newURL = newURL.replaceAll(":/", "://");
         return newURL;
-    }
+    }    
+    
 }

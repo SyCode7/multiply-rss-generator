@@ -22,6 +22,9 @@
 
 package febi.rssgen.com.multiply.rss;
 
+import com.google.gson.Gson;
+import febi.rssgen.com.multiply.rss.json.PhotoBySizesData;
+import febi.rssgen.com.multiply.rss.json.PhotoData;
 import febi.rssgen.com.rss.Global;
 import febi.rssgen.com.rss.RSSCategoryInner;
 import febi.rssgen.com.rss.RSSGenerator;
@@ -50,8 +53,8 @@ public class MultiplyPhotosRSSGenerator extends RSSGenerator {
     public ArrayList<RSSTerm> getParsedItems(String rawString) {
         ArrayList<RSSTerm> items = new ArrayList();
 
-        String authorPost, linkPost, titlePost, descriptionPost, dateStr;
-        int idPost;
+        String authorPost, linkPost, titlePost, descriptionPost, dateStr="";
+        int idPost=0;
         Date pubDate;
 
         String authorComment, urlComment, quoteCommentAuthor = "",
@@ -60,33 +63,45 @@ public class MultiplyPhotosRSSGenerator extends RSSGenerator {
 
         Document doc = Jsoup.parse(rawString);
 
-        Element post = doc.select("div.item").first();
-
-        Element content = post.select("div#item_body").first();
+        Element albumbody = doc.getElementById("albumbody");
+        Element item = doc.select("div.itemboxsub").first().parent();
+        
+        Element content = albumbody.getElementById("item_body");
 
         authorPost = content.attr("author");
 
-        idPost = Integer.parseInt(post.attr("id"));
+        try{
+            idPost = Integer.parseInt(item.attr("id").split(":")[2]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            Global.printReportGuide(item.attr("id"));
+        }
 
         //process the date
         //.*?(<nobr>|</a> on )(.*?)(</nobr>| for)(.+?)
-        Element dateEl = post.select("nobr").first();
+        Element dateEl = item.select("nobr").first();
         if (dateEl != null) {
             dateStr = dateEl.html();
         } //alternate handling
         else {
-            dateEl = post.select("div.itemsubsub[itemprop=description]").first();
-            dateStr = dateEl.html().split(" on ")[1].split(" for ")[0];
+            dateEl = item.select("div.itemsubsub[itemprop=description]").first();
+            try{
+                dateStr = dateEl.html().split(" on ")[1].split(" for ")[0];
+            } catch (ArrayIndexOutOfBoundsException e) {
+                Global.printReportGuide(dateEl.html());
+            }
         }
 
         dateStr = dateStr.replaceAll(",|'| an |at|on", "").trim();
 
         pubDate = Global.getPostDate(dateStr);
 
+        
         descriptionPost = content.html().replaceAll("&nbsp;", " ");
 
-        linkPost = post.select("a[itemprop=url]").first().attr("href");
-        titlePost = post.select("[itemprop=name]").first().html();
+        linkPost = "url: http://"+content.attr("author")
+                +".multiply.com/"
+                +"photos/album/"+ idPost;
+        titlePost = item.select("span[itemprop=name]").first().html();
 
 
         //check for comments
@@ -103,9 +118,21 @@ public class MultiplyPhotosRSSGenerator extends RSSGenerator {
             urlComment = "http://" + authorComment + ".multiply.com";
 
             //process the date
+            try{
             dateStr = comment.select("div.replyboxstamp").first()
                     .html().split(" wrote on ")[1].split(",")[0]
                     .replaceAll(",|'| an |at|on", "").trim();
+            } catch (ArrayIndexOutOfBoundsException e) {
+                try{
+                //alternative date  2009/01/05 08:54
+                dateStr = comment.select("div.replyboxstamp").first()
+                        .html().split(" wrote ")[1]
+                        .replaceAll(",|'| an |at|on", "").trim();
+                }catch (ArrayIndexOutOfBoundsException e1){
+                    Global.printReportGuide(comment.select("div.replyboxstamp").first()
+                        .html());
+                }
+            }
 
             // comment post date is generated in sequence, additional of 1 second
             dateComment =
@@ -130,28 +157,65 @@ public class MultiplyPhotosRSSGenerator extends RSSGenerator {
         RSSItem newItem = new RSSItem(titlePost, linkPost, pubDate, descriptionPost,
                 authorPost, idPost, commentList);
 
-        //obtain attachments            
-        //parse description for images
-        Elements attachments = content.select("img");
+        //obtain image list
+        Elements scripts = doc.select("script");
+        String _600 = "";
+        String _photoIds = "";
+        for(Element script:scripts){
+            //search for "600"
+            String[] lines = script.html().split("\n");
+            for(String line:lines){
+                if(line.startsWith("\"600\"")){
+                
+                    _600 = "{"+line+"}";
+                    
+                    _600 = _600.replaceAll("\"600\":", "\"_600\":");
+                    continue;
+                }
+                
+                if(line.startsWith("var PhotoIds")){
+                    _photoIds = line;
+                }
+            }
+        }
+        
+        //parse for json
+        Gson gson = new Gson();
+        PhotoBySizesData photos = gson.fromJson(_600,PhotoBySizesData.class);
+        
+        //process the photo ids to generate links to single photo pages
+        //it will be recursive process, just to obtain comments
+        //the page it self will be regenerated using RSSImageItem
+        //todo - next week
+        
+        StringBuilder contentStr = new StringBuilder(MultiplyRSSUtil.getGoodImageLink(descriptionPost));
+        
         int attachmentFound = 0;
-        for (Element attachment : attachments) {
+        for(PhotoData photo:photos.get600()){
 
-            String imageLink = attachment.attr("src");
-            String newImageLink = MultiplyRSSUtil.getGoodImageLink(imageLink);
+            String imageLink = photo.getSrc();
+            if(imageLink == null) continue;
+            
+//            String newImageLink = MultiplyRSSUtil.getGoodImageLink(imageLink);
+            //well, it seems not working.. haha.. let's just add &.jpg to the
+            //end of the string
+            String newImageLink = imageLink+"&.jpg";
 
             //add to item list
             items.add(new RSSItemImage(newImageLink, newImageLink, pubDate, authorPost));
             attachmentFound++;
+            
+            //append the content
+            contentStr.append(newImageLink).append("<br/>");
         }
 
         if (attachmentFound > 0) {
-            descriptionPost = MultiplyRSSUtil.getGoodImageLink(descriptionPost);
-            newItem.setDescription(descriptionPost);
+            newItem.setDescription(contentStr.toString());
         }
 
         //obtain tags
         //parse page for tags
-        Elements tagsEl = post.select("a[rel=tag]");
+        Elements tagsEl = item.select("a[rel=tag]");
         for (Element tagEl : tagsEl) {
             String tag = tagEl.html();
             //add to item list
@@ -159,6 +223,7 @@ public class MultiplyPhotosRSSGenerator extends RSSGenerator {
             newItem.getCategories().add(new RSSCategoryInner(tag));
         }
         newItem.getTags().add(new RSSTagInner(folder));
+        newItem.getCategories().add(new RSSCategoryInner(folder));
 
         //store the object
         items.add(newItem);

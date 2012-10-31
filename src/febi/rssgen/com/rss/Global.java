@@ -45,18 +45,28 @@ public class Global {
             + "\n- tags support"
             + "\n- category support"
             + "\n\nNew in 0.2.0"
-            + "\n- faster and robust parsing using jsoup";
+            + "\n- faster and robust parsing using jsoup"
+            + "\n\nNew in 0.2.1"
+            + "\n- photos posts parsing support (album only)"
+            + "\n- date range support";
+    
+    public static String REPORT_LINK =
+            "http://code.google.com/p/multiply-rss-generator/issues/list";
+    public static String APP_WEB = 
+            "http://febiansyah.name/apps/rssgen/multiply.php";
             
     public static final SimpleDateFormat formatter =
             new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     public static final SimpleDateFormat postDateFormat =
             new SimpleDateFormat("MMM d yy h:m a");
     
-    
     public static final SimpleDateFormat commentDateFormat =
             new SimpleDateFormat("MMM d yy");
     public static final SimpleDateFormat commentDateAltFormat =
             new SimpleDateFormat("MMM d");
+    //2009/01/05 08:54
+    public static final SimpleDateFormat commentDateAlt2Format =
+            new SimpleDateFormat("yyyy/MM/dd HH:mm");
 
     public static String formatDate(Date d) {
         return formatter.format(d);
@@ -90,10 +100,25 @@ public class Global {
                 pubDate = commentDt.getTime();
                 
             } catch (ParseException x) {
-            pubDate = Calendar.getInstance().getTime();
+                //try final date format
+                try{
+                    pubDate = commentDateAlt2Format.parse(str);
+                } catch (ParseException x2){
+                pubDate = Calendar.getInstance().getTime();
+                }
             }
         }
         
         return pubDate;
+    }
+    
+    public static void printReportGuide(String report){
+        
+        System.out.println("System Error: "+report);
+        System.out.println("You can try again, if problem persist, please");
+        System.out.println("report the the latest output to:");
+        System.out.println(REPORT_LINK);
+        System.out.println("Or you can post a comment in:");
+        System.out.println(APP_WEB);
     }
 }

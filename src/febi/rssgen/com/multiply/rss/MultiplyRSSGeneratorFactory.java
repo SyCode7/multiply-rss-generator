@@ -43,6 +43,10 @@ public class MultiplyRSSGeneratorFactory {
             return new MultiplyNotesRSSGenerator(url,
                 "Multiply RSS - " + url);
         }
+        else if(folder.equals("photos")) { 
+            return new MultiplyPhotosRSSGenerator(url,
+                "Multiply RSS - " + url);
+        }
         return null;
     }
 }

@@ -23,6 +23,7 @@
 package febi.rssgen.com.multiply.rss;
 
 import febi.rssgen.com.rss.Global;
+import febi.rssgen.com.rss.RSSCategoryInner;
 import febi.rssgen.com.rss.RSSGenerator;
 import febi.rssgen.com.rss.RSSItem;
 import febi.rssgen.com.rss.RSSItemComment;
@@ -48,8 +49,8 @@ public class MultiplyNotesRSSGenerator extends RSSGenerator {
     public ArrayList<RSSTerm> getParsedItems(String rawString) {
         ArrayList<RSSTerm> items = new ArrayList();
 
-        String authorPost, linkPost, titlePost, descriptionPost, dateStr;
-        int idPost;
+        String authorPost="", linkPost, titlePost, descriptionPost, dateStr="";
+        int idPost=0;
         Date pubDate;
 
         String authorComment, urlComment, quoteCommentAuthor = "",
@@ -65,9 +66,12 @@ public class MultiplyNotesRSSGenerator extends RSSGenerator {
         String itemAttrib = post.attr("id");
         
         System.out.println("id: "+post.attr("id"));
-        authorPost = itemAttrib.split(":")[0];
-        
-        idPost = Integer.parseInt(itemAttrib.split(":")[2]);
+        try{
+            authorPost = itemAttrib.split(":")[0];
+            idPost = Integer.parseInt(itemAttrib.split(":")[2]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            Global.printReportGuide(itemAttrib);
+        }        
         
         //process the date
         //.*?(<nobr>|</a> on )(.*?)(</nobr>| for)(.+?)
@@ -77,13 +81,17 @@ public class MultiplyNotesRSSGenerator extends RSSGenerator {
         } //alternate handling
         else {
             dateEl = post.select("div.itemsubsub").first();
-            dateStr = dateEl.html().split(" on ")[1].split(" for ")[0];
+            try{
+                dateStr = dateEl.html().split(" on ")[1].split(" for ")[0];
+            } catch (ArrayIndexOutOfBoundsException e) {
+                Global.printReportGuide(dateEl.html());
+            }
         }
 
         dateStr = dateStr.replaceAll(",|'| an |at|on", "").trim();
 
         pubDate = Global.getPostDate(dateStr);
-
+        
         descriptionPost = post.select("td.cattitle").first().html()
                 .replaceAll("&nbsp;", " ");
 
@@ -109,9 +117,21 @@ public class MultiplyNotesRSSGenerator extends RSSGenerator {
             urlComment = "http://" + authorComment + ".multiply.com";
 
             //process the date
+            try{
             dateStr = comment.select("div.replyboxstamp").first()
                     .html().split(" wrote on ")[1].split(",")[0]
                     .replaceAll(",|'| an |at|on", "").trim();
+            } catch (ArrayIndexOutOfBoundsException e) {
+                try{
+                //alternative date  2009/01/05 08:54
+                dateStr = comment.select("div.replyboxstamp").first()
+                        .html().split(" wrote ")[1]
+                        .replaceAll(",|'| an |at|on", "").trim();
+                }catch (ArrayIndexOutOfBoundsException e1){
+                    Global.printReportGuide(comment.select("div.replyboxstamp").first()
+                        .html());
+                }
+            }
 
             // comment post date is generated in sequence, additional of 1 second
             dateComment =
@@ -140,7 +160,8 @@ public class MultiplyNotesRSSGenerator extends RSSGenerator {
 
         //skipping tags, only add notes tag
         newItem.getTags().add(new RSSTagInner(folder));
-
+        newItem.getCategories().add(new RSSCategoryInner(folder));
+        
         //store the object
         items.add(newItem);
 

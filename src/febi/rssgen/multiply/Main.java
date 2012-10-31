@@ -19,30 +19,45 @@
  * @link http://code.google.com/p/multiply-rss-generator/
  * @year 2012
  */
-
 package febi.rssgen.multiply;
 
 import febi.com.log.Logger;
 import febi.rssgen.com.multiply.gui.MainFrame;
 import java.util.Locale;
 import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
  * @author itrc169
  */
 public class Main {
-    
-    public static void main(String args[]){
+
+    public static void main(String args[]) {
         Logger.init();
-        
+
         Logger.outputMessage("Program started.");
-        
+
         //set locale
-         Locale.setDefault(Locale.ENGLISH);
-        
+        Locale.setDefault(Locale.ENGLISH);
+
         JFrame frame = new MainFrame();
-        
+        try {
+            // Set cross-platform Java L&F (also called "Metal")
+            UIManager.setLookAndFeel(
+                    UIManager.getCrossPlatformLookAndFeelClassName());
+        } catch (UnsupportedLookAndFeelException e) {
+            // handle exception
+        } catch (ClassNotFoundException e) {
+            // handle exception
+        } catch (InstantiationException e) {
+            // handle exception
+        } catch (IllegalAccessException e) {
+            // handle exception
+        }
+
+
         frame.setVisible(true);
     }
 }

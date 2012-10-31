@@ -50,8 +50,8 @@ public class MultiplyRecipesRSSGenerator extends RSSGenerator {
     public ArrayList<RSSTerm> getParsedItems(String rawString) {
         ArrayList<RSSTerm> items = new ArrayList();
 
-        String authorPost, linkPost, titlePost, descriptionPost, dateStr;
-        int idPost;
+        String authorPost, linkPost, titlePost, descriptionPost, dateStr="";
+        int idPost=0;
         Date pubDate;
 
         String authorComment, urlComment, quoteCommentAuthor = "",
@@ -66,8 +66,11 @@ public class MultiplyRecipesRSSGenerator extends RSSGenerator {
 
         authorPost = content.attr("author");
 
-        idPost = Integer.parseInt(post.attr("id").split(":")[2]);
-
+        try{
+            idPost = Integer.parseInt(post.attr("id").split(":")[2]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            Global.printReportGuide(post.attr("id"));
+        }
         //process the date
         //.*?(<nobr>|</a> on )(.*?)(</nobr>| for)(.+?)
         Element dateEl = post.select("nobr").first();
@@ -76,7 +79,11 @@ public class MultiplyRecipesRSSGenerator extends RSSGenerator {
         } //alternate handling
         else {
             dateEl = post.select("div.itemsubsub[itemprop=description]").first();
-            dateStr = dateEl.html().split(" on ")[1].split(" for ")[0];
+            try{
+                dateStr = dateEl.html().split(" on ")[1].split(" for ")[0];
+            } catch (ArrayIndexOutOfBoundsException e) {
+                Global.printReportGuide(dateEl.html());
+            }
         }
 
         dateStr = dateStr.replaceAll(",|'| an |at|on", "").trim();
@@ -103,10 +110,22 @@ public class MultiplyRecipesRSSGenerator extends RSSGenerator {
             urlComment = "http://" + authorComment + ".multiply.com";
 
             //process the date
-            dateStr = comment.select("div.replyboxstamp").first()
+            try{
+                dateStr = comment.select("div.replyboxstamp").first()
                     .html().split(" wrote on ")[1].split(",")[0]
                     .replaceAll(",|'| an |at|on", "").trim();
-
+            } catch (ArrayIndexOutOfBoundsException e) {
+                try{
+                //alternative date  2009/01/05 08:54
+                dateStr = comment.select("div.replyboxstamp").first()
+                        .html().split(" wrote ")[1]
+                        .replaceAll(",|'| an |at|on", "").trim();
+                }catch (ArrayIndexOutOfBoundsException e1){
+                    Global.printReportGuide(comment.select("div.replyboxstamp").first()
+                        .html());
+                }
+            }
+            
             // comment post date is generated in sequence, additional of 1 second
             dateComment =
                     new Date((Global.getCommentPostDate(dateStr)).getTime() + (index * 1000));
@@ -159,6 +178,7 @@ public class MultiplyRecipesRSSGenerator extends RSSGenerator {
             newItem.getCategories().add(new RSSCategoryInner(tag));
         }
         newItem.getTags().add(new RSSTagInner(folder));
+        newItem.getCategories().add(new RSSCategoryInner(folder));
 
         //store the object
         items.add(newItem);
