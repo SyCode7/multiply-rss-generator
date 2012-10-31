@@ -160,9 +160,9 @@ public class MultiplyPageProcessor extends PageProcessor {
 
         Document doc = Jsoup.parse(page);
 
-        Elements items = doc.select("div.item").parents();
+        Elements items = doc.select("div.item");
         if(items == null) {
-            items = doc.select("span.itemboxsub");
+            items = doc.select("span.itemboxsub").parents();
         }
         
         for (Element item : items) {
@@ -170,6 +170,7 @@ public class MultiplyPageProcessor extends PageProcessor {
                 url = folder + URL_INFIX + item.attr("id").split(":")[2];
             } catch (ArrayIndexOutOfBoundsException e) {
                 Global.printReportGuide(item.attr("id"));
+                System.out.println("item: "+item.html());
             }
 
             if (!url.startsWith(HTTP_STRING)) {

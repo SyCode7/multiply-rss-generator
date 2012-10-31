@@ -32,7 +32,7 @@ import java.util.Date;
  */
 public class Global {
 
-    public static final String VERSION = "0.2.0";
+    public static final String VERSION = "0.2.1";
     public static final String UPDATE = "- bugs fixing..\n- Update on Locale"
             + "\n- Date format simplified."
             + "\n- Date format bug repair, use no StringToTime"
