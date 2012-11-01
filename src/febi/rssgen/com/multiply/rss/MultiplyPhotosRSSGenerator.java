@@ -188,7 +188,7 @@ public class MultiplyPhotosRSSGenerator extends RSSGenerator {
         //the page it self will be regenerated using RSSImageItem
         //todo - next week
         
-        StringBuilder contentStr = new StringBuilder(MultiplyRSSUtil.getGoodImageLink(descriptionPost));
+        StringBuilder contentStr = new StringBuilder(descriptionPost);
         
         int attachmentFound = 0;
         for(PhotoData photo:photos.get600()){
@@ -206,7 +206,9 @@ public class MultiplyPhotosRSSGenerator extends RSSGenerator {
             attachmentFound++;
             
             //append the content
-            contentStr.append(newImageLink).append("<br/>");
+            contentStr.append("<a href=\"").append(newImageLink).append("\">")
+                    .append("<img src=\"").append(newImageLink)
+                    .append("\" /></a><br/>\n");
         }
 
         if (attachmentFound > 0) {

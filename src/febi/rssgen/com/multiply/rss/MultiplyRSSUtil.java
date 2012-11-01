@@ -12,7 +12,7 @@ public class MultiplyRSSUtil {
     
     //the extension for images
     private static String attachmentSuffix = "&amp;nmid=0";
-    private static String attachmentExtension = "&amp;.jpg";
+    private static String attachmentExtension = "&.jpg";
     private static String attachmentSuffixShort = "&nmid=0";
     private static String attachmentExtensionShort = "&.jpg";
     
