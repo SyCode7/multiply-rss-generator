@@ -51,6 +51,7 @@ public class MultiplyRSSGeneratorHandler implements Runnable {
     
     public static final int MAX_FILE_LENGTH = 10000000;
     public static final String FILE_EXT = ".xml";
+    public static final int MAX_TRIAL = 3;
     private static Calendar cal;
     private static String mUser;
     private static boolean journal,
@@ -210,14 +211,24 @@ public class MultiplyRSSGeneratorHandler implements Runnable {
         int totalPage = pageList.size();
         
         item.setDesc("has " + totalPage + " number of page(s).");
+        //retrying till limit
+        int trialCounter;
         
         for (PageData page : pageList) {
             Logger.outputMessageLn("Fetching post: " + page.getUrl());
-            
-            rawString = PageProcessor.getPageData(page.getUrl());
-            
-            Logger.outputMessageLn("=--> parsing page " + counter + " of " + totalPage + " page(s)");
-            rssList.addAll(rssGen.getParsedItems(rawString));
+            trialCounter = 0;
+            while(trialCounter < MAX_TRIAL){
+                try{
+                    trialCounter++;
+                    rawString = PageProcessor.getPageData(page.getUrl());
+
+                    Logger.outputMessageLn("=--> parsing page " + counter + " of " + totalPage + " page(s)");
+                    rssList.addAll(rssGen.getParsedItems(rawString));
+                    break;
+                }catch(NullPointerException npe){
+                    Logger.outputMessage("**** Error parsing "+trialCounter+", refetching page: "+page.getUrl());
+                }
+            }
             
             counter++;
         }

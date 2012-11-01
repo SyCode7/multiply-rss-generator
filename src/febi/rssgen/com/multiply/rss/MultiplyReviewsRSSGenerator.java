@@ -135,7 +135,12 @@ public class MultiplyReviewsRSSGenerator extends RSSGenerator {
             Element quoteAuthorEl = comment.select("div.quotea > a").first();
             if (quoteAuthorEl != null) {
                 quoteCommentAuthor = quoteAuthorEl.html();
-                quoteCommentContent = comment.select("div.quotet > i").first().html();
+                Element quoteCommentEl = comment.select("div.quotet > i").first();
+                if(quoteCommentEl != null){
+                    quoteCommentContent = quoteCommentEl.html();
+                }else{
+                    quoteCommentContent = comment.select("div.quotea").first().ownText();
+                }
 
             }
 

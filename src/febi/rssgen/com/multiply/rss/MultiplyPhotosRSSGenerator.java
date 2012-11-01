@@ -144,7 +144,12 @@ public class MultiplyPhotosRSSGenerator extends RSSGenerator {
             Element quoteAuthorEl = comment.select("div.quotea > a").first();
             if (quoteAuthorEl != null) {
                 quoteCommentAuthor = quoteAuthorEl.html();
-                quoteCommentContent = comment.select("div.quotet > i").first().html();
+                Element quoteCommentEl = comment.select("div.quotet > i").first();
+                if(quoteCommentEl != null){
+                    quoteCommentContent = quoteCommentEl.html();
+                }else{
+                    quoteCommentContent = comment.select("div.quotea").first().ownText();
+                }
 
             }
 
@@ -157,6 +162,25 @@ public class MultiplyPhotosRSSGenerator extends RSSGenerator {
         RSSItem newItem = new RSSItem(titlePost, linkPost, pubDate, descriptionPost,
                 authorPost, idPost, commentList);
 
+        //obtain embedded images           
+        //parse description for images
+        Elements attachments = content.select("img");
+        int attachmentFound = 0;
+        for (Element attachment : attachments) {
+
+            String imageLink = attachment.attr("src");
+            String newImageLink = MultiplyRSSUtil.getGoodImageLink(imageLink);
+
+            //add to item list
+            items.add(new RSSItemImage(newImageLink, newImageLink, pubDate, authorPost));
+            attachmentFound++;
+        }
+
+        if (attachmentFound > 0) {
+            descriptionPost = MultiplyRSSUtil.getGoodImageLink(descriptionPost);
+            newItem.setDescription(descriptionPost);
+        }
+        
         //obtain image list
         Elements scripts = doc.select("script");
         String _600 = "";
@@ -190,7 +214,7 @@ public class MultiplyPhotosRSSGenerator extends RSSGenerator {
         
         StringBuilder contentStr = new StringBuilder(descriptionPost);
         
-        int attachmentFound = 0;
+        attachmentFound = 0;
         for(PhotoData photo:photos.get600()){
 
             String imageLink = photo.getSrc();
