@@ -32,7 +32,7 @@ import java.util.Date;
  */
 public class Global {
 
-    public static final String VERSION = "0.2.2";
+    public static final String VERSION = "0.2.3";
     public static final String UPDATE = "- bugs fixing..\n- Update on Locale"
             + "\n- Date format simplified."
             + "\n- Date format bug repair, use no StringToTime"
@@ -50,7 +50,9 @@ public class Global {
             + "\n- photos posts parsing support (album only)"
             + "\n- date range support"
             + "\n\nNew in 0.2.2"
-            + "\n- robustness by retrying to download page 3 times";
+            + "\n- robustness by retrying to download page 3 times"
+            + "\n\nNew in 0.2.3"
+            + "\n- bug fix on higher resolution photo text bug";
     
     public static String REPORT_LINK =
             "http://code.google.com/p/multiply-rss-generator/issues/list";

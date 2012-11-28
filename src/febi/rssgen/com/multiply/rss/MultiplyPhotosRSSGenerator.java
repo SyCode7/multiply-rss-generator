@@ -194,6 +194,7 @@ public class MultiplyPhotosRSSGenerator extends RSSGenerator {
                     _600 = "{"+line+"}";
                     
                     _600 = _600.replaceAll("\"600\":", "\"_600\":");
+                    _600 = _600.replaceAll("}],", "}]");
                     continue;
                 }
                 
@@ -219,7 +220,7 @@ public class MultiplyPhotosRSSGenerator extends RSSGenerator {
 
             String imageLink = photo.getSrc();
             if(imageLink == null) continue;
-            
+
 //            String newImageLink = MultiplyRSSUtil.getGoodImageLink(imageLink);
             //well, it seems not working.. haha.. let's just add &.jpg to the
             //end of the string
@@ -228,13 +229,13 @@ public class MultiplyPhotosRSSGenerator extends RSSGenerator {
             //add to item list
             items.add(new RSSItemImage(newImageLink, newImageLink, pubDate, authorPost));
             attachmentFound++;
-            
+
             //append the content
             contentStr.append("<a href=\"").append(newImageLink).append("\">")
                     .append("<img src=\"").append(newImageLink)
                     .append("\" /></a><br/>\n");
         }
-
+       
         if (attachmentFound > 0) {
             newItem.setDescription(contentStr.toString());
         }
